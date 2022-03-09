@@ -42,10 +42,11 @@ Import the data
 ```bash
 sudo docker exec -i db /usr/bin/mongorestore --db files /dump/files
 ```
-![File Upload Illustration](file_upload.png)
-
 ---
-### Illustration
+
+# Illustration
+
+![File Upload Illustration](file_upload.png)
 
 
 

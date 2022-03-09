@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+  mongo:
+    hostname: 0.0.0.0
+    container_name: db
+    image: mongo:4.4
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok' | grep 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./mongodb/data/db:/data/db
+      - ./mongodb/data/configdb:/data/configdb
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    restart: always
+
+  redis:
+    container_name: redis
+    image: redis:5.0.4-stretch
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok' | grep 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    restart: always
+    volumes:
+      - "./redis:/data"
+    ports:
+      - "6379:6379"
+
+# @TODO Dockerize Api and Worker
